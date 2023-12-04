@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Lesson } from '../lesson';
+import { Lesson } from '../shared/model/lesson';
 import { LessonsService } from '../lessons.service';
 import { tap } from 'rxjs';
 
