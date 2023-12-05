@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Lesson } from '../shared/model/lesson';
 import { LessonsService } from '../lessons.service';
 import { tap } from 'rxjs';
+import { LessonsSelectedService } from '../lessons-selected.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ export class HomeComponent implements OnInit {
 
   lessons: Lesson[]= [];
 
-  constructor(private lessonsService: LessonsService) {}
+  constructor(private lessonsService: LessonsService,
+              private lessonSelectedService: LessonsSelectedService) {}
 
   ngOnInit(): void {
     this.lessonsService.findAllLessons()
@@ -22,10 +24,10 @@ export class HomeComponent implements OnInit {
             .subscribe(
               lessons => this.lessons = lessons
             );
-
+    this.lessonSelectedService.selected$.subscribe(lesson => this.selectLesson(lesson));
   }
 
   selectLesson(lesson: Lesson) {
-
+    console.log('selectLesson: ', lesson);
   }
 }
